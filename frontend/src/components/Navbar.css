@@ -1,0 +1,14 @@
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav a:hover {
+  opacity: 0.6;
+}

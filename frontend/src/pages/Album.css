@@ -1,0 +1,55 @@
+.album-grid {
+  padding: 20px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+
+  gap: 20px;
+  justify-content: center;
+}
+
+/* vraie case de grid */
+.photo-cell {
+  width: 300px;
+  height: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* image */
+.photo-cell img {
+  max-width: 100%;
+  max-height: 100%;
+
+  width: auto;
+  height: auto;
+
+  display: block;
+}
+
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.9);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 999;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+}
