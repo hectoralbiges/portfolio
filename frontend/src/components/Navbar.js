@@ -3,15 +3,31 @@ import "./Navbar.css";
 
 function Navbar() {
   return (
-    <nav style={{ display: "flex", gap: "20px" }}>
-      <NavLink to="/" style={({ isActive }) => ({ fontWeight: isActive ? "bold" : "normal" })}>
-        Home
-      </NavLink>
+    <div className="navbar">
+      <div className="nav-grid">
+        <NavLink
+          to="/portfolio"
+          className={({ isActive }) =>
+            isActive ? "nav-photo active" : "nav-photo"
+          }
+        >
+          Photo
+        </NavLink>
 
-      <NavLink to="/portfolio" style={({ isActive }) => ({ fontWeight: isActive ? "bold" : "normal" })}>
-        Portfolio
-      </NavLink>
-    </nav>
+        <div></div>
+
+        <div></div>
+
+        <NavLink
+          to="/music"
+          className={({ isActive }) =>
+            isActive ? "nav-music active" : "nav-music"
+          }
+        >
+          Musique
+        </NavLink>
+      </div>
+    </div>
   );
 }
 

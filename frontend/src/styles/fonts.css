@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "Castoro";
+  src: url("../assets/fonts/Castoro/Castoro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Castoro";
+  src: url("../assets/fonts/Castoro/Castoro-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Taviraj";
+  src: url("../assets/fonts/Taviraj/Taviraj-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Taviraj";
+  src: url("../assets/fonts/Taviraj/Taviraj-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}

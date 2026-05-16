@@ -2,6 +2,7 @@ const albums = [
   {
     id: "20251119 - Tokyo",
     title: "Tokyo",
+    type: "projet",
     cover: "/images/20251119 - Tokyo/DSC00188.jpg",
     photos: [
       "/images/20251119 - Tokyo/DSC00188.jpg",
@@ -21,6 +22,7 @@ const albums = [
     {
     id: "20251129 - Takayama",
     title: "Takayama",
+    type: "voyage",
     cover: "/images/20251129 - Takayama/DSC00603.jpg",
     photos: [
       "/images/20251129 - Takayama/DSC00603.jpg",
@@ -31,6 +33,7 @@ const albums = [
       {
     id: "20251201 - Kyoto",
     title: "Kyoto",
+    type: "voyage",
     cover: "/images/20251201 - Kyoto/DSC00733.jpg",
     photos: [
       "/images/20251201 - Kyoto/DSC00733.jpg",
