@@ -37,11 +37,22 @@ app.get("/albums", async (req, res) => {
 
       const key = `${type}-${title}`;
 
+      const slugify = (text) =>
+        text
+          .toLowerCase()
+          .normalize("NFD")                 // enlève accents
+          .replace(/[\u0300-\u036f]/g, "") // accents cleanup
+          .replace(/[^a-z0-9\s-]/g, "")    // enlève tout sauf lettres/nombres/space/hyphen
+          .trim()
+          .replace(/\s+/g, "-")           // espaces → -
+          .replace(/-+/g, "-");       
+
       if (!albumsMap[key]) {
         albumsMap[key] = {
           id: key,
           title,
           type: type.toLowerCase() === "voyages" ? "voyage" : "projet",
+          slug: slugify(`${type}-${title}`),
           photos: []
         };
       }

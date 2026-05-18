@@ -11,6 +11,13 @@ function Portfolio() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const slug = (text) =>
+    text
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9\-]/g, "");
+
+
   const currentAlbum = albums.find(a => a.id === hovered);
 
   useEffect(() => {
@@ -46,7 +53,7 @@ function Portfolio() {
     list.map((album) => (
       <div key={album.id} className="album-item">
         <Link
-          to={`/album/${album.id}`}
+          to={`/album/${album.slug}`}
           className="album-title"
           onMouseEnter={() => setHovered(album.id)}
           onMouseLeave={() => setHovered(null)}
@@ -79,13 +86,13 @@ function Portfolio() {
 
       {/* LEFT */}
       <div className="column left">
-        <h2>Projets</h2>
+        <div className="category-title">Projets</div>
         {renderList(projets)}
       </div>
 
       {/* RIGHT */}
       <div className="column right">
-        <h2>Voyages</h2>
+        <div className="category-title">Voyages</div>
         {renderList(voyages)}
       </div>
 

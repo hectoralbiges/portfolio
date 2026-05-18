@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/portfolio/:id" element={<Album />} />
+        <Route path="/album/:id" element={<Album />} />
         <Route path="*" element={<div>404 - Page not found</div>} />
       </Routes> 
     </BrowserRouter>

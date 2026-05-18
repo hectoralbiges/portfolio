@@ -1,9 +1,9 @@
 .navbar {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
 }
 
 /* 🔥 grille 2x2 */
@@ -11,20 +11,13 @@
   display: grid;
   grid-template-columns: 120px 120px;
   grid-template-rows: 30px 30px;
-  border: 1px solid red;  
 }
 
-.nav-grid > * {
-  border: 1px solid blue; /* 🔥 chaque case */
-}
-
-/* texte commun */
 .nav-photo,
 .nav-music {
   font-family: var(--font-title);
   font-weight: 500; /* normal = medium */
   font-size: 20px;
-  letter-spacing: 1px;
   color: #111;
   text-decoration: none;
 }
