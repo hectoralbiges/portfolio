@@ -7,7 +7,7 @@ const cloudinary = require("cloudinary").v2;
 const app = express();
 
 app.use(cors());
-
+app.use(express.json());
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -15,6 +15,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+const PORT = process.env.PORT || 5000;
 
 app.get("/albums", async (req, res) => {
   try {
@@ -70,6 +71,6 @@ app.get("/albums", async (req, res) => {
   }
 });
 
-app.listen(3001, () => {
-  console.log("Server running on port 3001");
+app.listen(PORT, () => {
+  console.log("Server running on port", PORT);
 });
