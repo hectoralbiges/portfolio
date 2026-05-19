@@ -6,6 +6,9 @@
     const { id } = useParams();
     
     const [album, setAlbum] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const [album, setAlbum] = useState(null);
     const [orientations, setOrientations] = useState({});
     const API_URL = process.env.REACT_APP_API_URL;
 
@@ -13,11 +16,12 @@
       fetch(`${API_URL}/albums`)
         .then(res => res.json())
         .then(data => {
-          setAlbums(data);
+          const found = data.find(a => a.id === id);
+          setAlbum(found);
           setLoading(false);
         })
         .catch(() => setLoading(false));
-    }, [API_URL]);
+    }, [API_URL, id]);
 
     useEffect(() => {
       const load = async () => {
