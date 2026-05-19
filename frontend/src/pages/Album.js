@@ -1,12 +1,14 @@
   import { useParams } from "react-router-dom";
   import { useEffect, useState } from "react";
+
   import "./Album.css";
 
   function Album() {
     const { id } = useParams();
     
     const [album, setAlbum] = useState(null);
-    
+    const [loading, setLoading] = useState(true);
+
     const [orientations, setOrientations] = useState({});
     const API_URL = process.env.REACT_APP_API_URL;
 
@@ -22,9 +24,10 @@
     }, [API_URL, id]);
 
     useEffect(() => {
+      if (!album?.photos) return;
       const load = async () => {
         const result = {};
-
+        
         for (let img of album.photos) {
           const image = new Image();
           image.src = img;
@@ -44,8 +47,8 @@
       if (album) load();
     }, [album]);
 
-    if (!album) return <div>Loading...</div>;
-
+    if (loading) return <div>Loading...</div>;
+    if (!album) return <div>Album not found</div>;
     return (
       <div className="page">
 
@@ -57,10 +60,9 @@
 
       <div className="album-grid">
         {album.photos.map((img, i) => (
-          <div className={`img-wrapper ${orientations[img]}`}>
+          <div key={i} className={`img-wrapper ${orientations[img] || ""}`}>
 
           <img
-            key={i}
             src={img}
             className={orientations[img] === "landscape" ? "landscape" : "portrait"}
             alt=""
