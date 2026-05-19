@@ -9,26 +9,15 @@
     const [orientations, setOrientations] = useState({});
     const API_URL = process.env.REACT_APP_API_URL;
 
-
-    const getOrientation = (img) => {
-      return new Promise((resolve) => {
-        const image = new Image();
-        image.src = img;
-
-        image.onload = () => {
-          resolve(image.width > image.height ? "landscape" : "portrait");
-        };
-      });
-    };
-
     useEffect(() => {
       fetch(`${API_URL}/albums`)
         .then(res => res.json())
         .then(data => {
-          const found = data.find(a => a.slug === id);
-          setAlbum(found);
-        });
-    }, [id]);
+          setAlbums(data);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    }, [API_URL]);
 
     useEffect(() => {
       const load = async () => {

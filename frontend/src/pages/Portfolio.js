@@ -11,12 +11,6 @@ function Portfolio() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const slug = (text) =>
-    text
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^a-z0-9\-]/g, "");
-
 
   const currentAlbum = albums.find(a => a.id === hovered);
 
