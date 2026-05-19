@@ -8,7 +8,6 @@
     const [album, setAlbum] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const [album, setAlbum] = useState(null);
     const [orientations, setOrientations] = useState({});
     const API_URL = process.env.REACT_APP_API_URL;
 
