@@ -1,16 +1,2 @@
 @import "./styles/fonts.css";
 @import "./styles/variables.css";
-
-body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin: 0;
-  background-color: #fcfcfc;
-  color: #111;
-  font-family: var(--font-body);
-}
-
-h1, h2, h3 {
-  font-family: var(--font-title);
-}

@@ -12,29 +12,32 @@
 }
 
 .column.left {
-  padding-left: 2px;
   text-align: left;
 }
 
 .column.right {
-  padding-right: 2px;
   text-align: right;
 }
 
 .category-title {
   font-family: var(--font-title);
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 500;
+  letter-spacing: 0.5px;
   color: #111;
+  margin-bottom: 10px;
 }
 
 .album-title {
-  font-family: var(--font-title);
-  font-size: 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;  
+  letter-spacing: 0.3px;
   text-decoration: none;
   color: #111;
   display: inline-block;
   cursor: pointer;
+  margin-bottom: 2  px;
 }
 
 .album-title:hover {
@@ -44,7 +47,8 @@
 .album-item {
   display: block;
   margin: 0;
-  padding: 0;}
+  padding: 0;
+border-width: 1px;}
 
 .global-preview {
   padding-top: 20px;

@@ -1,8 +1,9 @@
 
 .album-title-page {
-  font-family: var(--font-title);
-  font-size: 16px;
-  font-weight: 500;
+  font-family: var(--font-body  );
+  font-size: 14px;
+  font-weight: 300;  
+  letter-spacing: 0.3px;
   color: #111;
   padding-left: 2px;
 }
@@ -14,9 +15,9 @@
 
   grid-auto-flow: dense;
 
-  max-width: 1100px;   /* 💥 limite largeur */
-  margin: 0 auto;      /* 💥 centre horizontalement */
-  padding: 0 20px;     /* 💥 marges internes */
+  max-width: 1100px; 
+  margin: 0 auto;     
+  padding: 0 20px;     
 }
 
 .img-wrapper img {

@@ -16,7 +16,7 @@
       fetch(`${API_URL}/albums`)
         .then(res => res.json())
         .then(data => {
-          const found = data.find(a => a.id === id);
+          const found = data.find(a => a.slug === id);
           setAlbum(found);
           setLoading(false);
         })
