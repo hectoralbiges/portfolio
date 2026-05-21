@@ -17,6 +17,16 @@ cloudinary.config({
 
 const PORT = process.env.PORT || 5000;
 
+const getOrder = (name) => {
+  const match = name.match(/^(\d{3})/);
+
+  return match ? parseInt(match[1], 10) : Infinity;
+};
+
+const cleanName = (name) => {
+  return name.replace(/^\d{3}-?/, "");
+};
+
 app.get("/albums", async (req, res) => {
   try {
 
@@ -33,8 +43,11 @@ app.get("/albums", async (req, res) => {
 
       const parts = img.asset_folder.split("/");
 
-      const type = parts[0];      // Voyages / Projets
-      const title = parts[1];     // Tokyo / Kyoto
+      const type = parts[0];
+      const rawTitle = parts[1];
+
+      const title = cleanName(rawTitle);
+      const albumOrder = getOrder(rawTitle);
 
       const key = `${type}-${title}`;
 
@@ -52,16 +65,30 @@ app.get("/albums", async (req, res) => {
         albumsMap[key] = {
           id: key,
           title,
+          order: albumOrder,
           type: type.toLowerCase() === "voyages" ? "voyage" : "projet",
           slug: slugify(`${type}-${title}`),
           photos: []
         };
       }
 
-      albumsMap[key].photos.push(img.secure_url);
+      const filename = img.public_id.split("/").pop();
+
+      albumsMap[key].photos.push({
+        url: img.secure_url,
+        order: getOrder(filename)
+      });
     });
 
-    const albums = Object.values(albumsMap);
+    const albums = Object.values(albumsMap)
+      .map(album => ({
+        ...album,
+        photos: album.photos
+          .sort((a, b) => a.order - b.order)
+          .map(photo => photo.url)
+      }))
+  .sort((a, b) => a.order - b.order);
+
 
     res.json(albums);
 
