@@ -91,10 +91,15 @@ function Portfolio() {
       </div>
 
       {/* PREVIEW */}
-      {currentAlbum && (
+      {currentAlbum?.photos?.length > 0 && (
         <div className="global-preview">
           {currentAlbum.photos.slice(0, 3).map((img, i) => (
-            <img key={i} src={img} alt="" />
+            <img
+              key={img || i}
+              src={img}
+              alt={currentAlbum.title}
+              loading="lazy"
+            />
           ))}
         </div>
       )}

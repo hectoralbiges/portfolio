@@ -9,6 +9,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+/* ------------------ CLOUDINARY CONFIG ------------------ */
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -17,86 +19,98 @@ cloudinary.config({
 
 const PORT = process.env.PORT || 5000;
 
+/* ------------------ UTILS ------------------ */
+
+// ordre albums basé sur 3 premiers chiffres
 const getOrder = (name) => {
   const match = name.match(/^(\d{3})/);
-
   return match ? parseInt(match[1], 10) : Infinity;
 };
 
-const cleanName = (name) => {
-  return name.replace(/^\d{3}-?/, "");
+// ordre photos basé sur 3 premiers chiffres du filename
+const getPhotoOrder = (publicId) => {
+  const filename = publicId.split("/").pop();
+  const match = filename.match(/^(\d{3})/);
+  return match ? parseInt(match[1], 10) : Infinity;
 };
+
+// slug propre
+const slugify = (text) =>
+  text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+
+/* ------------------ ROUTE ------------------ */
 
 app.get("/albums", async (req, res) => {
   try {
-
-    const result = await cloudinary.api.resources({
-      type: "upload",
-      max_results: 500
-    });
+    const result = await cloudinary.search
+      .expression("resource_type:image")
+      .sort_by("public_id", "desc")
+      .max_results(500)
+      .execute();
 
     const albumsMap = {};
 
     result.resources.forEach((img) => {
-
-      if (!img.asset_folder) return;
+      if (!img.public_id || !img.asset_folder) return;
 
       const parts = img.asset_folder.split("/");
 
-      const type = parts[0];
-      const rawTitle = parts[1];
+      if (parts.length < 2) return;
 
-      const title = cleanName(rawTitle);
-      const albumOrder = getOrder(rawTitle);
+      const type = parts[0]; // Voyages / Projets
+
+      // folder complet après type
+      const rawTitle = parts.slice(1).join("/");
+
+      // ordre album basé sur 001 / 002 / 003
+      const order = getOrder(rawTitle);
+
+      // titre SANS supprimer année (on garde tout)
+      const title = rawTitle.replace(/^\d{3}-?/, "").trim();
 
       const key = `${type}-${title}`;
 
-      const slugify = (text) =>
-        text
-          .toLowerCase()
-          .normalize("NFD")                 // enlève accents
-          .replace(/[\u0300-\u036f]/g, "") // accents cleanup
-          .replace(/[^a-z0-9\s-]/g, "")    // enlève tout sauf lettres/nombres/space/hyphen
-          .trim()
-          .replace(/\s+/g, "-")           // espaces → -
-          .replace(/-+/g, "-");       
-
       if (!albumsMap[key]) {
         albumsMap[key] = {
-          id: key,
+          id: `${String(order).padStart(3, "0")}-${slugify(title)}`,
           title,
-          order: albumOrder,
+          order,
           type: type.toLowerCase() === "voyages" ? "voyage" : "projet",
           slug: slugify(`${type}-${title}`),
-          photos: []
+          photos: [],
         };
       }
 
-      const filename = img.public_id.split("/").pop();
-
       albumsMap[key].photos.push({
         url: img.secure_url,
-        order: getOrder(filename)
+        order: getPhotoOrder(img.public_id),
       });
     });
 
     const albums = Object.values(albumsMap)
-      .map(album => ({
+      .map((album) => ({
         ...album,
         photos: album.photos
           .sort((a, b) => a.order - b.order)
-          .map(photo => photo.url)
+          .map((p) => p.url),
       }))
-  .sort((a, b) => a.order - b.order);
-
+      .sort((a, b) => a.order - b.order);
 
     res.json(albums);
-
   } catch (err) {
-    console.error(err);
+    console.error("Cloudinary error:", err);
     res.status(500).json({ error: err.message });
   }
 });
+
+/* ------------------ SERVER ------------------ */
 
 app.listen(PORT, () => {
   console.log("Server running on port", PORT);
