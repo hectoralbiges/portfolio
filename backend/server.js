@@ -89,7 +89,7 @@ app.get("/albums", async (req, res) => {
       }
 
       albumsMap[key].photos.push({
-        url: img.secure_url,
+        url: img.secure_url.replace("/upload/", "/upload/f_auto,q_auto/"),
         order: getPhotoOrder(img.public_id),
       });
     });
