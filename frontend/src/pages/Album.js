@@ -1,11 +1,11 @@
-  import { useParams } from "react-router-dom";
+  import { useParams, useNavigate } from "react-router-dom";
   import { useEffect, useState } from "react";
 
   import "./Album.css";
 
   function Album() {
     const { id } = useParams();
-    
+    const navigate = useNavigate();
     const [album, setAlbum] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -53,6 +53,10 @@
       <div className="page">
 
       <div className="album-page">
+
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          ← back
+        </button>
 
         <h1 className="album-title-page">
           {album.title}
