@@ -2,14 +2,13 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 import { useState } from "react";
 
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import Album from "./pages/Album";
 
 import bg6 from "./assets/bg/6.jpg";
 
 function AppContent() {
-  const [bg, setBg] = useState(bg6);
+  const [bg] = useState(bg6);
   const location = useLocation();
   const isAlbum = location.pathname.startsWith("/album");
 
