@@ -89,9 +89,9 @@
           ← back
         </button>
 
-        <h1 className="album-title-page">
+        <div className="album-title-page">
           {album.title}
-        </h1>
+        </div>
 
       <div className="album-grid">
         {album.photos.map((img, i) => (

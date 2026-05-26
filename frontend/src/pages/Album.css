@@ -1,5 +1,5 @@
 .album-page {
-  background: #fcfcfc; /* ou #fff */
+  background: #fcfcfc;
   min-height: 100vh;
 }
 
@@ -13,48 +13,53 @@
   cursor: pointer;
   color: #111;
   opacity: 0.8;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  margin-top: 0px;
 }
 
 .back-btn:hover {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 .album-title-page {
   font-family: var(--font-body);
   font-size: 24px;
-  font-weight: 500;  
+  font-weight: 500;
   color: #111;
-  max-width: 1100px;
-  margin: 0px auto 0 auto;
-  padding: 0 20px;
-  //border: 1px solid #111;
   margin-bottom: 8px;
+  margin-left: 20px;
 }
 
 .album-grid {
+  --cell-size: 200px; /* largeur fixe par case (modifiable) */
   display: grid;
-  grid-template-columns: repeat(4, minmax(120px, 1fr));
-  gap: 6px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
 
   grid-auto-flow: dense;
+  justify-content: start; /* aligne la grille à gauche du conteneur */
 
-  max-width: 1100px; 
-  margin: 0 auto;     
-  padding: 0 20px;     
+  width: auto;
+  max-width: none;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.img-wrapper {
+  overflow: hidden;
 }
 
 .img-wrapper img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover; /* remplit la case et garde un rendu visuel cohérent */
 }
 
 .img-wrapper.landscape {
   grid-column: span 2;
-
   display: flex;
-  align-items: center;   /* 💥 centrage vertical */
+  align-items: center;
   justify-content: center;
 }
 
@@ -62,6 +67,16 @@
   grid-column: span 1;
 }
 
+/* Réduire la taille des cases sur petits écrans pour éviter le débordement */
+
+@media (max-width: 1000px) {
+  .album-grid { gap: 8px; }
+  .img-wrapper.landscape { grid-column: span 1; }
+}
+
+@media (max-width: 260px) {
+  .img-wrapper.landscape { grid-column: span 1; }
+}
 
 .lightbox {
   position: fixed;
