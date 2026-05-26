@@ -1,0 +1,8 @@
+.music {
+    font-family: font-corps;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    font-size: 24px;
+}

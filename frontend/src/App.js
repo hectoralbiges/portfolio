@@ -4,6 +4,7 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Portfolio from "./pages/Portfolio";
 import Album from "./pages/Album";
+import Music from "./pages/Music";
 
 import bg6 from "./assets/bg/6.jpg";
 
@@ -30,6 +31,7 @@ function AppContent() {
         <Route path="/" element={<Navigate to="/portfolio" replace />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/album/:id" element={<Album />} />
+        <Route path="/music" element={<Music />} />
         <Route path="*" element={<div>404 - Page not found</div>} />
       </Routes>
     </div>

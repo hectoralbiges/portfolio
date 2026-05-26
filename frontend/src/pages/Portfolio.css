@@ -103,3 +103,12 @@
 .global-preview img:nth-child(3) {
   animation-delay: 0.08s;
 }
+
+.loading{
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  color: #111;
+  text-align: center;
+  margin-top: 64px;
+}
