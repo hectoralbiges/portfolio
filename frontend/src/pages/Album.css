@@ -5,15 +5,15 @@
 
 .back-btn {
   font-family: var(--font-body);
-  font-size: 12px;
-  letter-spacing: 0.5px;
+  font-size: 14px;
+  letter-spacing: 0.02em;
   font-weight: 500;
   background: none;
   border: none;
   cursor: pointer;
   color: #111;
-  opacity: 0.8;
-  margin-bottom: 8px;
+  opacity: 0.6;
+  margin-bottom: 4px;
   margin-top: 0px;
 }
 
@@ -22,9 +22,9 @@
 }
 
 .album-title-page {
-  font-family: var(--font-body);
-  font-size: 24px;
-  font-weight: 500;
+  font-family: var(--font-title);
+  font-size: 30px;
+  letter-spacing: 0.05em;
   color: #111;
   margin-bottom: 8px;
   margin-left: 20px;
