@@ -1,5 +1,5 @@
 .navbar {
-  height: 80px;
+  height: 70px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -10,27 +10,18 @@
 .nav-grid {
   display: grid;
   grid-template-columns: 140px 140px;
-  grid-template-rows: 40px 40px;
+  grid-template-rows: 30px 30px;
   //border: 3px solid red;
 }
-.nav-photo {
-  font-family: var(--font-title);
-  letter-spacing: 0.05em;
-  font-size: 38px;
-  color: #000;
-  text-decoration: none;
-  opacity: 0.4;
-  //border-right: 1px solid black;
-}
-
+.nav-photo,
 .nav-music {
   font-family: var(--font-title);
   letter-spacing: 0.05em;
-  font-size: 38px;
+  font-size: 30px;
   color: #000;
   text-decoration: none;
   opacity: 0.4;
-  //border-left: 1px solid black;
+  //border: 1px solid black;
 }
 
 .nav-photo:hover,
@@ -49,15 +40,15 @@
   grid-row: 1;
   justify-self: right;
   //border: 3px solid yellow;
-  padding-right: 2rem;
+  padding-right: 0rem;
 }
 
 /* MUSIQUE : case bas droite → aligné gauche */
 .nav-music {
   grid-column: 2;
-  grid-row: 1;
+  grid-row: 2;
   justify-self: left;
   //border: 3px solid yellow;
-  padding-left: 2rem;
-  //transform: translateY(13px);
+  padding-left: 0rem;
+  transform: translateY(-8px);
 }
