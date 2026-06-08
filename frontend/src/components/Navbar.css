@@ -1,49 +1,63 @@
 .navbar {
-  height: 100px;
+  height: 80px;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   //border: 3px solid blue;
 }
 
-/* 🔥 grille 2x2 */
 .nav-grid {
   display: grid;
   grid-template-columns: 140px 140px;
   grid-template-rows: 40px 40px;
   //border: 3px solid red;
 }
+.nav-photo {
+  font-family: var(--font-title);
+  letter-spacing: 0.05em;
+  font-size: 38px;
+  color: #000;
+  text-decoration: none;
+  opacity: 0.4;
+  //border-right: 1px solid black;
+}
 
-.nav-photo,
 .nav-music {
   font-family: var(--font-title);
   letter-spacing: 0.05em;
   font-size: 38px;
-  color: #111;
+  color: #000;
   text-decoration: none;
-  opacity: 0.6;
-  //border: 3px solid green;
+  opacity: 0.4;
+  //border-left: 1px solid black;
 }
 
-/* 🔥 état actif */
+.nav-photo:hover,
+.nav-music:hover {
+  text-decoration: line-through;
+  text-decoration-thickness: 0.06em;
+}
+
 .nav-photo.active,
 .nav-music.active {
   opacity: 1;
 }
 
-/* PHOTO : case haut gauche → aligné droite */
 .nav-photo {
   grid-column: 1;
   grid-row: 1;
-  justify-self: end;
+  justify-self: right;
   //border: 3px solid yellow;
+  padding-right: 0.5rem;
 }
 
 /* MUSIQUE : case bas droite → aligné gauche */
 .nav-music {
   grid-column: 2;
-  grid-row: 2;
-  justify-self: start;
-  transform: translateY(-13px);   /* 🔥 collé à gauche de sa case */
+  grid-row: 1;
+  justify-self: left;
+  //border: 3px solid yellow;
+  padding-left: 0.5rem;
+  //transform: translateY(13px);
 }

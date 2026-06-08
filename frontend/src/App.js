@@ -1,28 +1,40 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar";
 import Portfolio from "./pages/Portfolio";
 import Album from "./pages/Album";
 import Music from "./pages/Music";
 
-import bg6 from "./assets/bg/13.jpg";
+import bg6 from "./assets/bg/43.jpg";
 
 function AppContent() {
   const [bg] = useState(bg6);
+  const [windowWidth, setWindowWidth] = useState(() => window.innerWidth);
   const location = useLocation();
   const isAlbum = location.pathname.startsWith("/album");
+
+  useEffect(() => {
+    const updateWidth = () => setWindowWidth(window.innerWidth);
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  const backgroundSize = isAlbum
+    ? "cover"
+    : `${Math.min(windowWidth, 700)}px auto`;
 
   return (
     <div
       className="app"
       style={{
         backgroundImage: isAlbum ? "none" : `url(${bg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "top",
+        backgroundSize,
+        backgroundPosition: "center top",
         backgroundRepeat: "no-repeat",
         minHeight: "100vh",
-        backgroundColor: isAlbum ? "#fcfcfc" : "transparent",
+        backgroundColor: isAlbum ? "#fcfcfc" : "#fff",
       }}
     >
       <Navbar />
