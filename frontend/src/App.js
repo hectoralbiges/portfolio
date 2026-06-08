@@ -6,7 +6,7 @@ import Portfolio from "./pages/Portfolio";
 import Album from "./pages/Album";
 import Music from "./pages/Music";
 
-import bg6 from "./assets/bg/44.jpg";
+import bg6 from "./assets/bg/45.jpg";
 
 function AppContent() {
   const [bg] = useState(bg6);
@@ -23,7 +23,7 @@ function AppContent() {
 
   const backgroundSize = isAlbum
     ? "cover"
-    : `${Math.min(windowWidth, 180)}px auto`;
+    : `${Math.min(windowWidth, 400)}px auto`;
 
   return (
     <div

@@ -49,7 +49,7 @@
   grid-row: 1;
   justify-self: right;
   //border: 3px solid yellow;
-  padding-right: 0.5rem;
+  padding-right: 2rem;
 }
 
 /* MUSIQUE : case bas droite → aligné gauche */
@@ -58,6 +58,6 @@
   grid-row: 1;
   justify-self: left;
   //border: 3px solid yellow;
-  padding-left: 0.5rem;
+  padding-left: 2rem;
   //transform: translateY(13px);
 }
