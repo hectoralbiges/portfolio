@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Portfolio.css";
 
@@ -6,13 +6,13 @@ function Portfolio() {
 
   const API_URL = process.env.REACT_APP_API_URL;
 
-  const [hovered, setHovered] = useState(null);
   const [albums, setAlbums] = useState([]);
+  const [selected, setSelected] = useState(null);
+  const [lineTop, setLineTop] = useState(null);
+  const [previewTop, setPreviewTop] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-
-  const currentAlbum = albums.find(a => a.id === hovered);
+  const portfolioRef = useRef(null);
 
   useEffect(() => {
 
@@ -31,6 +31,10 @@ function Portfolio() {
       })
       .then(data => {
         setAlbums(data);
+        const projets = data.filter(a => a.type === "projet");
+        if (projets.length > 0) {
+          setSelected(projets[0].id);
+        }
         setLoading(false);
       })
       .catch(() => {
@@ -42,15 +46,57 @@ function Portfolio() {
 
   const projets = albums.filter(a => a.type === "projet");
   const voyages = albums.filter(a => a.type === "voyage");
+  const selectedAlbum = albums.find(a => a.id === selected);
+
+  useEffect(() => {
+    if (!selected || !portfolioRef.current) {
+      return;
+    }
+
+    const selectedLink = document.querySelector(".album-title.selected");
+    if (!selectedLink) {
+      return;
+    }
+
+    const portfolioRect = portfolioRef.current.getBoundingClientRect();
+    const selectedRect = selectedLink.getBoundingClientRect();
+    setLineTop(selectedRect.top - portfolioRect.top + selectedRect.height / 2);
+  }, [selected, albums]);
+
+  // position global preview vertically so its center aligns with the selected title center
+  useEffect(() => {
+    function updatePreviewTop() {
+      if (!selected) {
+        setPreviewTop(null);
+        return;
+      }
+      const selectedLink = document.querySelector('.album-title.selected');
+      if (!selectedLink) {
+        setPreviewTop(null);
+        return;
+      }
+      const selectedRect = selectedLink.getBoundingClientRect();
+      const centerY = selectedRect.top + selectedRect.height / 2; // viewport coords
+      setPreviewTop(centerY);
+    }
+
+    updatePreviewTop();
+    window.addEventListener('resize', updatePreviewTop);
+    window.addEventListener('scroll', updatePreviewTop, { passive: true });
+    return () => {
+      window.removeEventListener('resize', updatePreviewTop);
+      window.removeEventListener('scroll', updatePreviewTop);
+    };
+  }, [selected, albums]);
 
   const renderList = (list) =>
     list.map((album) => (
       <div key={album.id} className="album-item">
         <Link
           to={`/album/${album.slug}`}
-          className="album-title"
-          onMouseEnter={() => setHovered(album.id)}
-          onMouseLeave={() => setHovered(null)}
+          className={`album-title ${selected === album.id ? "selected" : ""}`}
+          onMouseEnter={() => setSelected(album.id)}
+          onClick={() => setSelected(album.id)}
         >
           {album.title}
         </Link>
@@ -76,28 +122,39 @@ function Portfolio() {
   }
 
   return (
-    <div className="portfolio">
+    <div className="portfolio" ref={portfolioRef}>
 
-      {/* LEFT */}
-      <div className="column left">
+      {/* PROJECTS: full width, left-aligned */}
+      <div className="projects-section">
         <div className="category-title">Projets</div>
         {renderList(projets)}
       </div>
 
-      {/* RIGHT */}
-      <div className="column right">
+      {/* VOYAGES: appears below projects, right-aligned */}
+      <div className="voyages-section">
         <div className="category-title">Voyages</div>
         {renderList(voyages)}
       </div>
 
+      {selectedAlbum && lineTop !== null && (
+        <div
+          key={`line-${selected}`}
+          className={`selection-line ${selectedAlbum.type}`}
+          style={{ top: `${lineTop}px` }}
+        />
+      )}
+
       {/* PREVIEW */}
-      {currentAlbum?.photos?.length > 0 && (
-        <div className="global-preview">
-          {currentAlbum.photos.slice(0, 3).map((img, i) => (
+      {selected && (
+        <div
+          className={`global-preview ${selectedAlbum?.type}`}
+          style={previewTop != null ? { top: `${previewTop}px` } : undefined}
+        >
+          {selectedAlbum?.photos?.slice(0, 2).map((img, i) => (
             <img
-              key={img || i}
+              key={`photo-${selected}-${i}`}
               src={img}
-              alt={currentAlbum.title}
+              alt={selectedAlbum?.title}
               loading="lazy"
             />
           ))}

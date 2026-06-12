@@ -5,25 +5,23 @@ function Navbar() {
   const location = useLocation();
 
   // Portfolio actif + Album aussi
-  const isPortfolioActive =
+  const isPhotographyActive =
     location.pathname === "/portfolio" ||
     location.pathname.startsWith("/album");
+
+  const activeLineKey = location.pathname;
 
   return (
     <div className="navbar">
       <div className="nav-grid">
-
         <NavLink
           to="/portfolio"
           className={() =>
-            isPortfolioActive ? "nav-photo active" : "nav-photo"
+            isPhotographyActive ? "nav-photo active" : "nav-photo"
           }
         >
-          Photo
+          Photography
         </NavLink>
-
-        <div></div>
-        <div></div>
 
         <NavLink
           to="/music"
@@ -31,9 +29,8 @@ function Navbar() {
             isActive ? "nav-music active" : "nav-music"
           }
         >
-          Musique
+          Music
         </NavLink>
-
       </div>
     </div>
   );

@@ -1,8 +1,37 @@
 @import "./styles/fonts.css";
 @import "./styles/variables.css";
 
+/* Use border-box everywhere to avoid unexpected overflow from padding/borders */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 html, body, #root {
   margin: 0;
   padding: 0;
   height: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* prevent horizontal scrollbar caused by overflowing elements */
+}
+
+/* allow vertical scrolling but avoid showing unnecessary scrollbars */
+body {
+  overflow-y: auto;
+}
+
+.site-brand {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  font-family: var(--font-title);
+  font-size: 40px;
+  color: #000;
+  z-index: 60;
+  pointer-events: none;
+  display: inline-block;
+  background: #fff; /* white box behind the text */
+  padding-left: 4px;
+  padding-right: 8px;
+  padding-top: 7px;
+  line-height: 1;
 }

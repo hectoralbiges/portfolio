@@ -1,6 +1,6 @@
 .navbar {
-  height: 70px;
   width: 100%;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,26 +8,36 @@
 }
 
 .nav-grid {
+  width: 100%;
   display: grid;
-  grid-template-columns: 140px 140px;
-  grid-template-rows: 30px 30px;
+  grid-template-columns: 50% 50%;
+  gap: 1vw;
+  position: relative;
+  align-items: center;
   //border: 3px solid red;
 }
+
+
+
 .nav-photo,
 .nav-music {
+  position: relative;
   font-family: var(--font-title);
   letter-spacing: 0.05em;
-  font-size: 30px;
+  font-size: 26px;
   color: #000;
   text-decoration: none;
-  opacity: 0.4;
-  //border: 1px solid black;
+  opacity: 0.6;
+  //border: 3px solid green;
 }
 
-.nav-photo:hover,
-.nav-music:hover {
-  text-decoration: line-through;
-  text-decoration-thickness: 0.06em;
+/* Align first column item to the right and second to the left */
+.nav-photo {
+  justify-self: end;
+}
+
+.nav-music {
+  justify-self: start;
 }
 
 .nav-photo.active,
@@ -35,20 +45,50 @@
   opacity: 1;
 }
 
-.nav-photo {
-  grid-column: 1;
-  grid-row: 1;
-  justify-self: right;
-  //border: 3px solid yellow;
-  padding-right: 0rem;
+/* Trait pour Photography - part vers la gauche */
+.nav-photo.active::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 100%;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  animation: line-extend-left 0.6s ease forwards;
 }
 
-/* MUSIQUE : case bas droite → aligné gauche */
-.nav-music {
-  grid-column: 2;
-  grid-row: 2;
-  justify-self: left;
-  //border: 3px solid yellow;
-  padding-left: 0rem;
-  transform: translateY(-8px);
+/* Trait pour Music - part vers la droite */
+.nav-music.active::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 100%;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  animation: line-extend-right 0.6s ease forwards;
+}
+
+@keyframes line-extend-left {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 80px;
+    opacity: 1;
+  }
+}
+
+@keyframes line-extend-right {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 80px;
+    opacity: 1;
+  }
 }
