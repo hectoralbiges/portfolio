@@ -77,7 +77,7 @@
       return () => window.removeEventListener("keydown", onKey);
     }, [lightboxOpen, album]);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div className="loading">Loading...</div>;
     if (!album) return <div>Album not found</div>;
 
     return (

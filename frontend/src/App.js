@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -9,6 +10,17 @@ import About from "./pages/About";
 function AppContent() {
   const location = useLocation();
   const isAlbum = location.pathname.startsWith("/album");
+  const [brandVisible, setBrandVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setBrandVisible(window.scrollY < 80);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div
@@ -18,7 +30,15 @@ function AppContent() {
         backgroundColor: isAlbum ? "#fcfcfc" : "#fff",
       }}
     >
-      <div className="site-brand">Torek</div>
+      <div
+        className="site-brand"
+        style={{
+          opacity: brandVisible ? 1 : 0,
+          visibility: brandVisible ? "visible" : "hidden",
+        }}
+      >
+        Torek
+      </div>
       <Navbar />
 
       <Routes>

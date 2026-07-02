@@ -1,8 +1,11 @@
 .portfolio {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 60px);
   box-sizing: border-box;
-  padding-top: 130px; /* leave space for navbar */
+  padding: 0;
   //border: 3px solid green;
 }
 
@@ -12,6 +15,7 @@
   flex-direction: column;
   align-items: flex-start;
   padding-left: 4px;
+  margin-bottom: 30px;
   //border: 3px solid red;
 }
 
@@ -19,17 +23,18 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  padding-right: 4px;
+  align-items: flex-start;
+  padding-left: 4px;
+  padding-right: 0;
   //border: 3px solid red;
-  }
+}
 
 .category-title {
   font-family: var(--font-title);
   font-size: 20px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.9em;
   color: #000;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   position: relative;
   z-index: 2;
   //border: 3px solid red;
@@ -37,17 +42,17 @@
 
 .album-title {
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.15em;
   text-decoration: none;
   color: #000;
-  display: inline-block;
+  display: block;
+  text-align: left;
+  width: fit-content;
   cursor: pointer;
-  background-color: #FFF;
   position: relative;
   z-index: 2;
-  //line-height: 18px;
   //border: 3px solid blue;
 }
 
@@ -61,8 +66,8 @@
 
 .selection-line {
   position: absolute;
-  height: 2px;
-  width: 100vw;
+  height: 1.5px;
+  width: 29.7vw;
   background-color: #000;
   z-index: 1;
   pointer-events: none;
@@ -78,9 +83,9 @@
 }
 
 .selection-line.voyage {
-  right: 0;
-  left: auto;
-  transform-origin: right;
+  left: 0;
+  right: auto;
+  transform-origin: left;
 }
 
 @keyframes drawLine {
@@ -96,35 +101,30 @@
   display: block;
   margin: 0;
   padding: 0;
+  text-align: left;
   //border: 3px solid red;
 }
 
 .global-preview {
   position: fixed;
-  left: 50%;
-  transform: translate(-50%, -50%); /* center by its middle */
+  left: 30vw;
   top: 50%;
-
-  width: 404px; /* 2 * 200px + 10px gap */
-
-  display: grid;
-  grid-template-columns: 200px 200px;
-  gap: 4px;
-
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.3vw;
   z-index: 999;
 }
 
 .global-preview img {
-  width: 200px;
-  height: 300px;
+  width: 20vw;
+  height: 30vw;
   object-fit: cover;
   display: block;
   filter: grayscale(100%);
   animation: imageFadeIn 0.25s ease forwards;
   animation-fill-mode: both;
-}
-
-.global-preview.voyage img {
   animation-name: imageFadeIn;
 }
 
@@ -136,32 +136,28 @@
     opacity: 1;
   }
 }
-.global-preview.projet img:nth-child(1) {
-  animation-delay: 0.25s;
-  transform: translateY(-10px);
-}
 
-.global-preview.projet img:nth-child(2) {
+.global-preview img:nth-child(1) {
   animation-delay: 0.15s;
-  transform: translateY(10px);
+  transform: translateY(0);
 }
 
-.global-preview.voyage img:nth-child(1) {
+.global-preview img:nth-child(2) {
   animation-delay: 0.25s;
-transform: translateY(10px);
+  transform: translateY(0);
 }
 
-.global-preview.voyage img:nth-child(2) {
-  animation-delay: 0.15s;
-  transform: translateY(-10px);
+.global-preview img:nth-child(3) {
+  animation-delay: 0.35s;
+  transform: translateY(0);
 }
 
 .loading{
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.15em;
   color: #000;
   text-align: center;
-  margin-top: 64px;
+  margin-top: 100px;
 }

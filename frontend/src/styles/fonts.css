@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Libre+Baskerville:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Libre+Baskerville:wght@400;500;600;700&family=Geist:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @font-face {
-  font-family: 'Catalina Rayden';
-  src: url('../assets/font/Catalina Rayden/catalina-rayden.regular.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'Grand Cru';
+  src: url('../assets/font/grand_cru/GrandCru-LightS.otf') format('opentype');
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }

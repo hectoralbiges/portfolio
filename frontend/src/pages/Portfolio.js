@@ -63,21 +63,16 @@ function Portfolio() {
     setLineTop(selectedRect.top - portfolioRect.top + selectedRect.height / 2);
   }, [selected, albums]);
 
-  // position global preview vertically so its center aligns with the selected title center
+  // Keep the preview block at a stable vertical position regardless of the selected label height.
   useEffect(() => {
     function updatePreviewTop() {
       if (!selected) {
         setPreviewTop(null);
         return;
       }
-      const selectedLink = document.querySelector('.album-title.selected');
-      if (!selectedLink) {
-        setPreviewTop(null);
-        return;
-      }
-      const selectedRect = selectedLink.getBoundingClientRect();
-      const centerY = selectedRect.top + selectedRect.height / 2; // viewport coords
-      setPreviewTop(centerY);
+
+      const viewportHeight = window.innerHeight;
+      setPreviewTop(viewportHeight * 0.5);
     }
 
     updatePreviewTop();
@@ -107,7 +102,7 @@ function Portfolio() {
   if (loading) {
     return (
       <div className="loading">
-        Loading...
+        loading...
       </div>
     );
   }
@@ -126,13 +121,13 @@ function Portfolio() {
 
       {/* PROJECTS: full width, left-aligned */}
       <div className="projects-section">
-        <div className="category-title">Projets</div>
+        <div className="category-title">PROJECTS</div>
         {renderList(projets)}
       </div>
 
       {/* VOYAGES: appears below projects, right-aligned */}
       <div className="voyages-section">
-        <div className="category-title">Voyages</div>
+        <div className="category-title">TRAVELS</div>
         {renderList(voyages)}
       </div>
 
@@ -150,7 +145,7 @@ function Portfolio() {
           className={`global-preview ${selectedAlbum?.type}`}
           style={previewTop != null ? { top: `${previewTop}px` } : undefined}
         >
-          {selectedAlbum?.photos?.slice(0, 2).map((img, i) => (
+          {selectedAlbum?.photos?.slice(0, 3).map((img, i) => (
             <img
               key={`photo-${selected}-${i}`}
               src={img}

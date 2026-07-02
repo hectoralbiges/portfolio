@@ -6,26 +6,24 @@
 .back-btn {
   font-family: var(--font-body);
   font-size: 14px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.15em;
   font-weight: 500;
   background: none;
   border: none;
   cursor: pointer;
-  color: #111;
-  opacity: 0.6;
-  margin-bottom: 4px;
+  color: #000;
+  opacity: 0.5;
+  margin-left: 0px;
   margin-top: 0px;
-}
-
-.back-btn:hover {
-  text-decoration: line-through;
+  margin-bottom: 8px;
+  margin-top: 0px;
 }
 
 .album-title-page {
   font-family: var(--font-title);
-  font-size: 30px;
-  letter-spacing: 0.05em;
-  color: #111;
+  font-size: 20px;
+  letter-spacing: 0em;
+  color: #000;
   margin-bottom: 8px;
   margin-left: 20px;
 }
@@ -34,14 +32,16 @@
   --cell-size: 200px; /* largeur fixe par case (modifiable) */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 12px;
+  gap: 4px;
 
   grid-auto-flow: dense;
   justify-content: start; /* aligne la grille à gauche du conteneur */
 
   width: auto;
   max-width: none;
-  padding: 0 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
   box-sizing: border-box;
 }
 
@@ -119,3 +119,13 @@
 
 .lightbox-nav.prev { left: 18px; }
 .lightbox-nav.next { right: 18px; }
+
+.loading{
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: #000;
+  text-align: center;
+  margin-top: 100px;
+}
