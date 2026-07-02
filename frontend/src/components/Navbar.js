@@ -9,8 +9,6 @@ function Navbar() {
     location.pathname === "/portfolio" ||
     location.pathname.startsWith("/album");
 
-  const activeLineKey = location.pathname;
-
   return (
     <div className="navbar">
       <div className="nav-grid">
