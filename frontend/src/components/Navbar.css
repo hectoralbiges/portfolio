@@ -1,6 +1,6 @@
 .navbar {
   width: 100%;
-  height: 60px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,12 +32,11 @@
 .nav-music {
   position: relative;
   font-family: var(--font-title);
-  letter-spacing: 0em;
+  letter-spacing: -0.03em;
   font-size: 28px;
   color: #000;
   text-decoration: none;
   opacity: 0.5;
-  font-weight: 400;
   //border: 3px solid green;
 }
 

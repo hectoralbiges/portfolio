@@ -17,6 +17,7 @@ html, body, #root {
 /* allow vertical scrolling but avoid showing unnecessary scrollbars */
 body {
   overflow-y: auto;
+  font-family: var(--font-body);
 }
 
 .site-brand {
@@ -31,8 +32,6 @@ body {
   color: #000;
   line-height: 1;
   letter-spacing: 0em;
-  padding-left: 4px;
-  padding-top: 6px;
   //border: 3px solid red;
 }
 

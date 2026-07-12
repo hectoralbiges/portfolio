@@ -85,9 +85,9 @@
 
       <div className="album-page">
 
-        <button className="back-btn" onClick={() => navigate(-1)}>
+        <div className="back-btn" onClick={() => navigate(-1)}>
           ← back
-        </button>
+        </div>
 
         <div className="album-title-page">
           {album.title}

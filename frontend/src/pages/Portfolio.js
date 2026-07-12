@@ -60,7 +60,7 @@ function Portfolio() {
 
     const portfolioRect = portfolioRef.current.getBoundingClientRect();
     const selectedRect = selectedLink.getBoundingClientRect();
-    setLineTop(selectedRect.top - portfolioRect.top + selectedRect.height / 2);
+    setLineTop(selectedRect.top - portfolioRect.top + selectedRect.height * 0.65);
   }, [selected, albums]);
 
   // Keep the preview block at a stable vertical position regardless of the selected label height.
@@ -135,7 +135,7 @@ function Portfolio() {
         <div
           key={`line-${selected}`}
           className={`selection-line ${selectedAlbum.type}`}
-          style={{ top: `${lineTop}px` }}
+          style={{ top: `${lineTop -1 }px` }}
         />
       )}
 

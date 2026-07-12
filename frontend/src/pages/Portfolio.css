@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 56px);
   box-sizing: border-box;
   padding: 0;
   //border: 3px solid green;
@@ -15,7 +15,7 @@
   flex-direction: column;
   align-items: flex-start;
   padding-left: 4px;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
   //border: 3px solid red;
 }
 
@@ -32,9 +32,9 @@
 .category-title {
   font-family: var(--font-title);
   font-size: 20px;
-  letter-spacing: 0.9em;
+  letter-spacing: 1em;
   color: #000;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   position: relative;
   z-index: 2;
   //border: 3px solid red;
@@ -42,9 +42,9 @@
 
 .album-title {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.03em;
   text-decoration: none;
   color: #000;
   display: block;
@@ -109,7 +109,7 @@
   position: fixed;
   left: 30vw;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-45%);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -118,8 +118,8 @@
 }
 
 .global-preview img {
-  width: 20vw;
-  height: 30vw;
+  width: 23vw;
+  height: 34.5vw;
   object-fit: cover;
   display: block;
   filter: grayscale(100%);
@@ -154,9 +154,9 @@
 
 .loading{
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.03em;
   color: #000;
   text-align: center;
   margin-top: 100px;

@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Portfolio from "./pages/Portfolio";
 import Album from "./pages/Album";
 import Music from "./pages/Music";
 import About from "./pages/About";
+import logo from "./assets/logo/logo.svg";
 
 function AppContent() {
-  const location = useLocation();
-  const isAlbum = location.pathname.startsWith("/album");
   const [brandVisible, setBrandVisible] = useState(true);
 
   useEffect(() => {
@@ -27,7 +26,7 @@ function AppContent() {
       className="app"
       style={{
         minHeight: "100vh",
-        backgroundColor: isAlbum ? "#fcfcfc" : "#fff",
+        backgroundColor: "#fff",
       }}
     >
       <div
@@ -35,9 +34,11 @@ function AppContent() {
         style={{
           opacity: brandVisible ? 1 : 0,
           visibility: brandVisible ? "visible" : "hidden",
+          height: "48px",
+          margin: "4px 0 0 4px",
         }}
       >
-        Torek
+        <img src={logo} alt="Logo" style={{ display: "block", width: "auto", height: "100%" }} />
       </div>
       <Navbar />
 
